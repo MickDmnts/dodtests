@@ -1,11 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace DOD {
     class Program {
-        public static Random _Random = new Random();
+        public static Random Random = new Random();
 
-        static void Main(string[] args) {
+        static void Main(string[] _args) {
             Program program = new Program();
             int qtt = 1;
 
@@ -89,29 +88,29 @@ namespace DOD {
             public int _DoorsCount;
             public int _FurnituresCount;
 
-            public Buildings(int _blocks, int _buildings = 4, int rooms = 4, int doors = 8, int furnitures = 10) {
+            public Buildings(int _blocks, int _buildings = 4, int _rooms = 4, int _doors = 8, int _furnitures = 10) {
                 this._BlockMemoryAlloc = _blocks;
                 this._BuildingMemoryAlloc = this._BlockMemoryAlloc * _buildings;
 
                 this._BuildingCount = _buildings;
-                this._RoomsCount = rooms;
-                this._DoorsCount = doors;
-                this._FurnituresCount = furnitures;
+                this._RoomsCount = _rooms;
+                this._DoorsCount = _doors;
+                this._FurnituresCount = _furnitures;
 
-                _RoomAreas = new int[_BuildingMemoryAlloc * rooms];
+                _RoomAreas = new int[_BuildingMemoryAlloc * _rooms];
                 for (int i = 0; i < _RoomAreas.Length; i++) {
                     _RoomAreas[i] = -1;
                 }
 
-                _DoorWidths = new int[_BuildingMemoryAlloc * doors];
-                _DoorHeights = new int[_BuildingMemoryAlloc * doors];
+                _DoorWidths = new int[_BuildingMemoryAlloc * _doors];
+                _DoorHeights = new int[_BuildingMemoryAlloc * _doors];
                 for (int i = 0; i < _DoorWidths.Length; i++) {
                     _DoorWidths[i] = -1;
                     _DoorHeights[i] = -1;
                 }
 
-                _Chairs = new int[_BuildingMemoryAlloc * furnitures];
-                _Tables = new int[_BuildingMemoryAlloc * furnitures];
+                _Chairs = new int[_BuildingMemoryAlloc * _furnitures];
+                _Tables = new int[_BuildingMemoryAlloc * _furnitures];
                 for (int i = 0; i < _Chairs.Length; i++) {
                     _Chairs[i] = -1;
                     _Tables[i] = -1;
