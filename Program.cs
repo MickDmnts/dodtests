@@ -7,22 +7,45 @@ namespace DOD {
 
         static void Main(string[] args) {
             Program program = new Program();
-            int qtt = 1_000_000;
+            int qtt = 1;
 
             Stopwatch stopwatch = new Stopwatch();
             stopwatch.Start();
             program.DoDTheBuilder(qtt);
             stopwatch.Stop();
 
-
-
             Console.WriteLine("DOD Elapsed: " + stopwatch.Elapsed.ToString());
         }
 
         void DoDTheBuilder(int _qtt) {
             BuildingBlock buildingBlock = new BuildingBlock(_qtt);
+            int idx = buildingBlock.BuildBuilding(0);
+            int roomIdx = buildingBlock.BuildRoom(idx, 37);
+            int doorIdx = buildingBlock.BuildDoor(idx, 1, 2);
+            int furnIdx = buildingBlock.BuildFurnitures(idx, 2, 5);
 
-            for (int i = 0; i < _qtt; i++) {
+            Console.WriteLine($"Idx: {idx} Room: {roomIdx} Door: {doorIdx} Furn: {furnIdx}");
+
+            int flattenIdx = buildingBlock.BuildingFlattenIndex(0, idx);
+            Console.WriteLine($"Flatten: {flattenIdx}");
+
+            int flattenRoomIdx = buildingBlock.RoomFlattenIndex(idx, roomIdx);
+            Console.WriteLine($"Flatten Room: {flattenRoomIdx}");
+
+            int roomArea = buildingBlock.GetRoomArea(flattenRoomIdx);
+            Console.WriteLine($"Room Area: {roomArea}");
+
+            int furnitureRoomIdx = buildingBlock.FurnituresFlattenIndex(idx, furnIdx);
+            int tableIdx = buildingBlock.GetTables(furnitureRoomIdx);
+            int chairIdx = buildingBlock.GetChairs(furnitureRoomIdx);
+            Console.WriteLine($"Furn: {furnitureRoomIdx} Table: {tableIdx} Chair: {chairIdx}");
+
+            int doorRoomIdx = buildingBlock.DoorFlattenIndex(idx, doorIdx);
+            int doorWidth = buildingBlock.GetDoorWidth(doorRoomIdx);
+            int doorHeight = buildingBlock.GetDoorHeight(doorRoomIdx);
+            Console.WriteLine($"Door: {doorRoomIdx} Width: {doorWidth} Height: {doorHeight}");
+
+            /*for (int i = 0; i < _qtt; i++) {
                 int buildingIdx = buildingBlock.BuildBuilding(i);
 
                 for (int j = 0; j < buildingBlock.GetBuildings._BuildingCount; j++) {
@@ -30,7 +53,7 @@ namespace DOD {
                     buildingBlock.BuildDoor(buildingIdx, 2, 2);
                     buildingBlock.BuildFurnitures(buildingIdx, 2, 2);
                 }
-            }
+            }*/
         }
 
         /// <summary>
@@ -51,8 +74,10 @@ namespace DOD {
     class BuildingBlock {
         public struct Buildings {
             public int[] _RoomAreas;
+
             public int[] _Chairs;
             public int[] _Tables;
+
             public int[] _DoorWidths;
             public int[] _DoorHeights;
 
@@ -106,6 +131,7 @@ namespace DOD {
             _Buildings = new Buildings(_blocks);
         }
 
+        #region Building API
         public int BuildBuilding(int _blockIdx) {
             _blockIdx = Math.Clamp(_blockIdx, 0, _Buildings._BlockMemoryAlloc - 1);
 
@@ -148,5 +174,55 @@ namespace DOD {
 
             return idx;
         }
+        #endregion
+
+        #region Flatten Accessing API
+        public int BuildingFlattenIndex(int _blockIdx, int _buildingIdx) {
+            _blockIdx = Math.Clamp(_blockIdx, 0, _Buildings._BlockMemoryAlloc - 1);
+            _buildingIdx = Math.Clamp(_buildingIdx, 0, _Buildings._BuildingCount - 1);
+
+            return Program.FlattenIndex(_blockIdx, _buildingIdx, _Buildings._BuildingCount);
+        }
+
+        public int RoomFlattenIndex(int _buildingIdx, int _roomIdx) {
+            _roomIdx = Math.Clamp(_roomIdx, 0, _Buildings._RoomsCount - 1);
+
+            return Program.FlattenIndex(_buildingIdx, _roomIdx, _Buildings._RoomsCount);
+        }
+
+        public int FurnituresFlattenIndex(int _buildingIdx, int _furnitureIdx) {
+            _furnitureIdx = Math.Clamp(_furnitureIdx, 0, _Buildings._FurnituresCount - 1);
+
+            return Program.FlattenIndex(_buildingIdx, _furnitureIdx, _Buildings._FurnituresCount);
+        }
+
+        public int DoorFlattenIndex(int _buildingIdx, int _doorIdx) {
+            _doorIdx = Math.Clamp(_doorIdx, 0, _Buildings._DoorsCount - 1);
+
+            return Program.FlattenIndex(_buildingIdx, _doorIdx, _Buildings._DoorsCount);
+        }
+        #endregion
+
+        #region Actual Value Accessing API
+        public int GetRoomArea(int _flattenRoomIdx) {
+            return _Buildings._RoomAreas[_flattenRoomIdx];
+        }
+
+        public int GetChairs(int _flattenFurnitureIdx) {
+            return _Buildings._Chairs[_flattenFurnitureIdx];
+        }
+
+        public int GetTables(int _flattenFurnitureIdx) {
+            return _Buildings._Tables[_flattenFurnitureIdx];
+        }
+
+        public int GetDoorWidth(int _flattenDoorIdx) {
+            return _Buildings._DoorWidths[_flattenDoorIdx];
+        }
+
+        public int GetDoorHeight(int _flattenDoorIdx) {
+            return _Buildings._DoorHeights[_flattenDoorIdx];
+        }
+        #endregion
     }
 }
