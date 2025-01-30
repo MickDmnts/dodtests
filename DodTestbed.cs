@@ -6,19 +6,57 @@ namespace DOD {
 
         static void Main(string[] _args) {
             Program program = new Program();
-            int qtt = 1;
+            int qtt = 20_000_000;
 
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
             program.DoDTheBuilder(qtt);
-            stopwatch.Stop();
-
-            Console.WriteLine("DOD Elapsed: " + stopwatch.Elapsed.ToString());
         }
 
         void DoDTheBuilder(int _qtt) {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             BuildingBlock buildingBlock = new BuildingBlock(_qtt);
-            int idx = buildingBlock.BuildBuilding(0);
+
+            List<int> rooms = new List<int>();
+            List<int> doors = new List<int>();
+            List<int> furnitures = new List<int>();
+
+            for (int i = 0; i < _qtt; i++) {
+                int buildingIdx = buildingBlock.BuildBuilding(i);
+
+                for (int j = 0; j < buildingBlock.GetBuildings._BuildingCount; j++) {
+                    rooms.Add(buildingBlock.RoomFlattenIndex(i, buildingBlock.BuildRoom(buildingIdx, 2)));
+                    doors.Add(buildingBlock.DoorFlattenIndex(i, buildingBlock.BuildDoor(buildingIdx, 2, 2)));
+                    furnitures.Add(buildingBlock.FurnituresFlattenIndex(i, buildingBlock.BuildFurnitures(buildingIdx, 2, 2)));
+                }
+            }
+            stopwatch.Stop();
+            Console.WriteLine("Building Elapsed: " + stopwatch.Elapsed.ToString());
+
+            stopwatch.Reset();
+            stopwatch.Start();
+
+            for (int i = 0; i < buildingBlock.GetBuildings._BuildingCount; i++) {
+                //@TODO
+            }
+
+            /* for (int j = 0; j < rooms.Count; j++) {
+                buildingBlock.GetRoomArea(rooms[j]);
+            }
+
+            for (int j = 0; j < doors.Count; j++) {
+                buildingBlock.GetDoorWidth(doors[j]);
+                buildingBlock.GetDoorHeight(doors[j]);
+            }
+
+            for (int j = 0; j < furnitures.Count; j++) {
+                buildingBlock.GetTables(furnitures[j]);
+                buildingBlock.GetChairs(furnitures[j]);
+            } */
+
+            stopwatch.Stop();
+            Console.WriteLine("Building Reading: " + stopwatch.Elapsed.ToString());
+
+            /* int idx = buildingBlock.BuildBuilding(0);
             int roomIdx = buildingBlock.BuildRoom(idx, 37);
             int doorIdx = buildingBlock.BuildDoor(idx, 1, 2);
             int furnIdx = buildingBlock.BuildFurnitures(idx, 2, 5);
@@ -42,17 +80,8 @@ namespace DOD {
             int doorRoomIdx = buildingBlock.DoorFlattenIndex(idx, doorIdx);
             int doorWidth = buildingBlock.GetDoorWidth(doorRoomIdx);
             int doorHeight = buildingBlock.GetDoorHeight(doorRoomIdx);
-            Console.WriteLine($"Door: {doorRoomIdx} Width: {doorWidth} Height: {doorHeight}");
+            Console.WriteLine($"Door: {doorRoomIdx} Width: {doorWidth} Height: {doorHeight}"); */
 
-            /*for (int i = 0; i < _qtt; i++) {
-                int buildingIdx = buildingBlock.BuildBuilding(i);
-
-                for (int j = 0; j < buildingBlock.GetBuildings._BuildingCount; j++) {
-                    buildingBlock.BuildRoom(buildingIdx, 2);
-                    buildingBlock.BuildDoor(buildingIdx, 2, 2);
-                    buildingBlock.BuildFurnitures(buildingIdx, 2, 2);
-                }
-            }*/
         }
 
         /// <summary>
@@ -68,6 +97,26 @@ namespace DOD {
         public static int FlattenIndex(int _x, int _y, int _z, int _yLength, int _zLength) {
             return _z + _zLength * FlattenIndex(_x, _y, _yLength);
         }
+    }
+
+    public struct Building {
+        public Room[] _Rooms;
+    }
+
+    public struct Room {
+        public int _Area;
+        public Door[] _Doors;
+        public Furniture[] _Furnitures;
+    }
+
+    public struct Door {
+        public int _Width;
+        public int _Height;
+    }
+
+    public struct Furniture {
+        public int _Chairs;
+        public int _Tables;
     }
 
     class BuildingBlock {
