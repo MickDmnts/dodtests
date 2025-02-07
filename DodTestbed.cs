@@ -18,6 +18,15 @@ namespace DOD {
             }
             sw.Stop();
             Console.WriteLine("Building: " + sw.Elapsed);
+
+            sw.Reset();
+            sw.Start();
+            for (int i = 0; i < buildingSquare._BuildingLimit; i++) {
+                dod.Get(i, building);
+            }
+            sw.Stop();
+            Console.WriteLine("Getting: " + sw.Elapsed);
+
         }
 
     }
