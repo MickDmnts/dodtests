@@ -1,0 +1,80 @@
+//Run 0
+a
+b
+c
+d
+e
+If start
+If end - Elapsed: 24.6460381
+Switch start
+Switch end - Elapsed: 27.0913241
+Safe dic start
+Safe dic end - Elapsed: 43.5914091
+Unsafe dic start
+Unsafe dic end - Elapsed: 28.2787588
+
+//Run 1
+a
+b
+c
+d
+e
+If start
+If end - Elapsed: 7.1299359
+Switch start
+Switch end - Elapsed: 6.9231426
+Safe dic start
+Safe dic end - Elapsed: 43.2366309
+Unsafe dic start
+Unsafe dic end - Elapsed: 27.8244724
+
+//Run 2
+a
+b
+c
+d
+e
+If start
+If end - Elapsed: 30.8167093
+Switch start
+Switch end - Elapsed: 30.5862336
+Safe dic start
+Safe dic end - Elapsed: 43.6315045
+Unsafe dic start
+Unsafe dic end - Elapsed: 28.22051
+
+//Run 3
+a
+b
+c
+d
+e
+f
+g
+h
+i
+j
+k
+l
+m
+n
+o
+p
+q
+r
+s
+t
+u
+v
+w
+x
+y
+z
+If start
+If end - Elapsed: 105.1271866
+Switch start
+Switch end - Elapsed: 24.8208067
+Safe dic start
+Safe dic end - Elapsed: 40.8796022
+Unsafe dic start
+Unsafe dic end - Elapsed: 26.2153713
