@@ -78,3 +78,130 @@ Safe dic start
 Safe dic end - Elapsed: 40.8796022
 Unsafe dic start
 Unsafe dic end - Elapsed: 26.2153713
+
+Michalopoulos - AMD Ryzen 5 5600X
+//Run 4 - String #9
+
+cduquptfjc
+mvhhtipiux
+vxartnpdye
+kqrglkzwys
+kyupkxlnkx
+qgqueygrqt
+osnkjqyyss
+wsdsoekubn
+mrpxbdbokg
+vlhbbgygpt
+kvwfwqxdfb
+jksgdtqgqd
+ovokeqmhlf
+rdmkhzgezd
+thcdwljvnn
+ulxsahdqew
+rjenalvjmt
+juhaxggzfv
+ddfusqhxfu
+nawviotkkr
+arzudqslfy
+fueztqovwm
+zuawxdnsbj
+evmxdbfqhy
+ejebpoifkm
+mjxkyxhljw
+If start
+If end - Elapsed: 31,6359394
+Switch start
+Switch end - Elapsed: 33,9252071
+Safe dic start
+Safe dic end - Elapsed: 22,0823563
+Unsafe dic start
+Unsafe dic end - Elapsed: 12,5754026
+
+//Run #5 - String #1
+
+cduquptfjc
+mvhhtipiux
+vxartnpdye
+kqrglkzwys
+kyupkxlnkx
+qgqueygrqt
+osnkjqyyss
+wsdsoekubn
+mrpxbdbokg
+vlhbbgygpt
+kvwfwqxdfb
+jksgdtqgqd
+ovokeqmhlf
+rdmkhzgezd
+thcdwljvnn
+ulxsahdqew
+rjenalvjmt
+juhaxggzfv
+ddfusqhxfu
+nawviotkkr
+arzudqslfy
+fueztqovwm
+zuawxdnsbj
+evmxdbfqhy
+ejebpoifkm
+mjxkyxhljw
+If start
+If end - Elapsed: 5,5298937
+Switch start
+Switch end - Elapsed: 34,4979362
+Safe dic start
+Safe dic end - Elapsed: 23,7471054
+Unsafe dic start
+Unsafe dic end - Elapsed: 13,4498112
+
+//Run #6 - String #26
+
+cduquptfjc
+mvhhtipiux
+vxartnpdye
+kqrglkzwys
+kyupkxlnkx
+qgqueygrqt
+osnkjqyyss
+wsdsoekubn
+mrpxbdbokg
+vlhbbgygpt
+kvwfwqxdfb
+jksgdtqgqd
+ovokeqmhlf
+rdmkhzgezd
+thcdwljvnn
+ulxsahdqew
+rjenalvjmt
+juhaxggzfv
+ddfusqhxfu
+nawviotkkr
+arzudqslfy
+fueztqovwm
+zuawxdnsbj
+evmxdbfqhy
+ejebpoifkm
+mjxkyxhljw
+If start
+If end - Elapsed: 92,0845522
+Switch start
+Switch end - Elapsed: 33,8541301
+Safe dic start
+Safe dic end - Elapsed: 20,6410985
+Unsafe dic start
+Unsafe dic end - Elapsed: 11,701136
+
+//Run #7 - String #5 (5 samples)
+cduquptfjc
+mvhhtipiux
+vxartnpdye
+kqrglkzwys
+kyupkxlnkx
+If start
+If end - Elapsed: 18,572739
+Switch start
+Switch end - Elapsed: 34,956556
+Safe dic start
+Safe dic end - Elapsed: 20,4201239
+Unsafe dic start
+Unsafe dic end - Elapsed: 11,6403405
